@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MonsterIndia Scrapper</title>
+</head>
+<body>
+<form method="POST" action="/search">
+    Search : <input type="text" name="search_string">
+    <input type="submit">
+</form>
+{% if job_list %}
+
+<table border="1">
+    <tr>
+        <th>
+            Job Count
+        </th>
+        <th>
+            Job Title
+        </th>
+        <th>
+            Skills
+        </th>
+        <th>
+            Company
+        </th>
+        <th>
+            Location
+        </th>
+        <th>
+            Experience
+        </th>
+        <th>
+            Salary
+        </th>
+        <th>
+            Job Link
+        </th>
+    </tr>
+    {% for job in job_list %}
+    <tr>
+        <td>
+            {{job['count']}}
+        </td>
+        <td>
+            {{job['job_title']}}
+        </td>
+        <td>
+            {{job['skills']}}
+        </td>
+        <td>
+            {{job['company']}}
+        </td>
+        <td>
+            {{job['location']}}
+        </td>
+        <td>
+            {{job['experience']}}
+        </td>
+        <td>
+            {{job['salary']}}
+        </td>
+        <td>
+            {{job['job_link']}}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+</body>
+</html>
