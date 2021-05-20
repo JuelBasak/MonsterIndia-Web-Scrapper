@@ -2,71 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>MonsterIndia Scrapper</title>
 </head>
 <body>
-<form method="POST" action="/search">
-    Search : <input type="text" name="search_string">
-    <input type="submit">
-</form>
-{% if job_list %}
 
-<table border="1">
-    <tr>
-        <th>
-            Job Count
-        </th>
-        <th>
-            Job Title
-        </th>
-        <th>
-            Skills
-        </th>
-        <th>
-            Company
-        </th>
-        <th>
-            Location
-        </th>
-        <th>
-            Experience
-        </th>
-        <th>
-            Salary
-        </th>
-        <th>
-            Job Link
-        </th>
-    </tr>
-    {% for job in job_list %}
-    <tr>
-        <td>
-            {{job['count']}}
-        </td>
-        <td>
-            {{job['job_title']}}
-        </td>
-        <td>
-            {{job['skills']}}
-        </td>
-        <td>
-            {{job['company']}}
-        </td>
-        <td>
-            {{job['location']}}
-        </td>
-        <td>
-            {{job['experience']}}
-        </td>
-        <td>
-            {{job['salary']}}
-        </td>
-        <td>
-            {{job['job_link']}}
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="text-center">
+<header class="p-3 bg-dark text-white">
+          <h2>MonsterIndia Website Scrapper</h2>
+  </header>
+</div>
+
+<nav class="navbar navbar-light bg-dark sticky-top navbar-nav-scroll">
+  <div class="container-fluid">
+    <form class="d-flex" method="POST" action="/search">
+      <input class="form-control me-2" type="search" placeholder="Enter Keywords here" aria-label="Search" name="search_string">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+{% if job_list %}
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <tr>
+            <th>
+                Job Count
+            </th>
+            <th>
+                Job Title
+            </th>
+            <th>
+                Skills
+            </th>
+            <th>
+                Company
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Experience
+            </th>
+            <th>
+                Salary
+            </th>
+            <th>
+                Job Link
+            </th>
+        </tr>
+        {% for job in job_list %}
+        <tr>
+            <td>
+                {{job['count']}}
+            </td>
+            <td>
+                {{job['job_title']}}
+            </td>
+            <td>
+                {{job['skills']}}
+            </td>
+            <td>
+                {{job['company']}}
+            </td>
+            <td>
+                {{job['location']}}
+            </td>
+            <td>
+                {{job['experience']}}
+            </td>
+            <td>
+                {{job['salary']}}
+            </td>
+            <td>
+                {{job['job_link']}}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>

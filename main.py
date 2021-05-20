@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def homepage():
-    return render_template('index.html')
+    return render_template('index.html', loading=False)
 
 
 @app.route('/search', methods=['POST'])
@@ -61,3 +61,4 @@ def search():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
