@@ -1,7 +1,7 @@
+import os
 import bs4
 from selenium import webdriver
 from flask import Flask, render_template, request
-
 
 app = Flask(__name__)
 
@@ -16,7 +16,16 @@ def search():
     search_string = request.form['search_string']
     url = r'https://www.monsterindia.com/srp/results?query=' + search_string
 
-    driver = webdriver.Firefox()
+    options = webdriver.ChromeOptions()
+    options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-sh-usage')
+
+    # driver = webdriver.Firefox(firefox_options=options)
+
+    driver = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), chrome_options=options)
+
     driver.get(url)
     driver.implicitly_wait(30)
     source = driver.page_source
@@ -61,4 +70,3 @@ def search():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
