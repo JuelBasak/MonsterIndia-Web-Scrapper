@@ -1,7 +1,8 @@
+import os
+
 import bs4
 from selenium import webdriver
 from flask import Flask, render_template, request
-
 
 app = Flask(__name__)
 
@@ -16,7 +17,14 @@ def search():
     search_string = request.form['search_string']
     url = r'https://www.monsterindia.com/srp/results?query=' + search_string
 
-    driver = webdriver.Firefox()
+    options = webdriver.FirefoxOptions()
+    options.binary_location = os.environ.get('FIREFOX_BIN')
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+
+    # driver = webdriver.Firefox(firefox_options=options)
+    driver = webdriver.Firefox(executable_path=os.environ.get('GECKODRIVER_PATH'), firefox_options=options)
+
     driver.get(url)
     driver.implicitly_wait(30)
     source = driver.page_source
@@ -61,4 +69,3 @@ def search():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
